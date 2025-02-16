@@ -9,11 +9,21 @@
 }
 
 <div class="flex justify-between items-center mt-2">
-  <button (click)="loadPokemon(-1)">Previous</button>
+  <button
+    [disabled]="currentPage() === this.firstPage()"
+    [routerLink]="['/pokedex/page', currentPage() - 1]"
+  >
+    Previous
+  </button>
   <span
     class="text-xl border-2 border-white w-9 h-9 flex justify-center items-center rounded-2xl"
   >
     {{ currentPage() }}
   </span>
-  <button (click)="loadPokemon(+1)">Next</button>
+  <button
+    [disabled]="currentPage() === this.lastPage()"
+    [routerLink]="['/pokedex/page', currentPage() + 1]"
+  >
+    Next
+  </button>
 </div>
