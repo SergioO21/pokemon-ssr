@@ -1,0 +1,19 @@
+<h1 class="text-3xl text-center">Pokédex</h1>
+
+<hr class="my-2" />
+
+@if (pokemon().length > 0) {
+  <pokedex [pokemonList]="pokemon()" />
+} @else {
+  <pokedex-skeleton />
+}
+
+<div class="flex justify-between items-center mt-2">
+  <button (click)="loadPokemon(-1)">Previous</button>
+  <span
+    class="text-xl border-2 border-white w-9 h-9 flex justify-center items-center rounded-2xl"
+  >
+    {{ currentPage() }}
+  </span>
+  <button (click)="loadPokemon(+1)">Next</button>
+</div>
