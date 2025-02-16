@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 
 export const routes: Routes = [
   {
-    path: "pokedex",
+    path: "pokedex/page/:page",
     loadComponent: () => import("./pages/pokedex-page/pokedex-page.component"),
   },
   {
@@ -23,6 +23,6 @@ export const routes: Routes = [
   },
   {
     path: "**",
-    redirectTo: "about",
+    redirectTo: "/pokedex/page/1",
   },
 ];
