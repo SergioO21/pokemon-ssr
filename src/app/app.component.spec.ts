@@ -41,7 +41,6 @@ describe("AppComponent", () => {
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.componentInstance;
     compiled = fixture.nativeElement;
-    console.log(compiled);
   });
 
   it("should create the app", () => {
