@@ -1,12 +1,11 @@
 <div class="gap-3 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5">
   @for (pokemon of pokemonList(); track pokemon.id) {
     <pokemon-card [pokemon]="pokemon" />
+  } @empty {
+    <div
+      class="col-span-5 text-center border-white h-28 flex justify-center items-center"
+    >
+      No Pokémon Matched Your Search!
+    </div>
   }
-
-  <!-- TODO: Implement no pokemon -->
-  <!-- <div-->
-  <!--   class="col-span-5 text-center border-white h-28 flex justify-center items-center"-->
-  <!-- >-->
-  <!--   No Pokémon Matched Your Search!-->
-  <!-- </div>-->
 </div>
