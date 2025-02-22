@@ -1,7 +1,7 @@
 import { inject, Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Pokemon, PokemonPagination, SimplePokemon } from "../interfaces";
-import { map, Observable } from "rxjs";
+import { catchError, map, Observable, throwError } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -37,6 +37,20 @@ export class PokemonService {
   }
 
   loadPokemon(id: string): Observable<Pokemon> {
-    return this.http.get<Pokemon>(`${this.baseUrl}/${id}`);
+    return this.http
+      .get<Pokemon>(`${this.baseUrl}/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      console.error("An error occurred", error);
+    } else {
+      console.error(`Error code: ${error.status}`, error);
+    }
+
+    const errorMessage = error.error ?? "An error occurred";
+
+    return throwError(() => new Error(errorMessage));
   }
 }
